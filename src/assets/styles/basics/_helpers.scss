@@ -1,3 +1,44 @@
-.container{
+.container {
     padding-inline: 8vw;
+}
+
+.flex {
+    display: flex;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.justify-center {
+
+    justify-content: center;
+}
+
+.blue {
+    color: $clrBlue;
+}
+
+.green {
+    color: $clrGreen;
+}
+
+.red {
+    color: $clrRed;
+}
+
+.yellow {
+    color: $clrYellow
+}
+
+.black {
+    color: $clrBlack;
+}
+
+.white {
+    color: $clrWhite;
+}
+
+.gray{
+    color: $clrGray;
 }
