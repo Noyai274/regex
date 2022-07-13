@@ -1,0 +1,19 @@
+.search-btn{
+    background-color: $clrGray;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.search-btn:hover{
+    border-inline: 2px solid darken($clrGray, $amount: 10%);
+}
+
+.search-input{
+    margin: 2em 0;
+    width: 60vw;
+    height: 2.5rem;
+    border-radius: 20px;
+    padding: 5px;
+    border: lightgray 1.5px solid;
+}

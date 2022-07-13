@@ -12,7 +12,7 @@ function App() {
       <Header />
         <Routes>
           <Route path="/" exact element={<HomePage />} />
-          <Route path="/result" element={<ResultPage />} />
+          <Route path="/result/:string" element={<ResultPage />} />
         </Routes>
       </HashRouter>
       <Footer />
