@@ -4,40 +4,26 @@ import { useParams, useNavigate } from "react-router-dom"
 import { regexService } from '../services/regex.service'
 import { SearchBar } from "../cmps/searchBar"
 import { Logo } from "../cmps/logo"
+import { AddOptions } from "../cmps/add-options"
+import { Exp } from "../cmps/exp"
 
 export const ResultPage = () => {
     const navigate = useNavigate()
     let { string } = useParams()
 
     const [trans, setTrans] = useState('')
-    const [allowNums, setAllowNums] = useState(false)
-    const [incaseSensitive, setIncaseSensitive] = useState(false)
+
 
     useEffect(() => {
         const translation = regexService.translate(string)
         setTrans(translation)
-    }, [])
+    }, [string])
 
 
     const onGoToHome = () => {
         navigate(`/`)
     }
-    const onToggleOption = (ev) => {
-        switch (ev.target.name) {
-            case 'incase-sensitive':
-                setIncaseSensitive(!incaseSensitive)
-                break;
-            case 'allow-numbers':
-                setAllowNums(!allowNums)
-                break;
-            default: return
-        }
-    }
 
-    const onSubmitAdditions= (ev) => {
-        ev.preventDefault()
-        console.log(ev)
-    }
 
     return (
         <div className="container">
@@ -46,18 +32,9 @@ export const ResultPage = () => {
                 <SearchBar />
             </div>
             <h1>Regex for <span>{string}</span></h1>
-            <form onSubmit={(ev)=>onSubmitAdditions(ev)}>
-                <label htmlFor="incase-sensitive">
-                    Incase Sensitive
-                    <input onChange={(ev) => onToggleOption(ev)} name="incase-sensitive" type="checkbox" value="incase-sensitive"/>
-                </label>
-                <label htmlFor="allow-numbers">
-                    Allow numbers
-                    <input onChange={(ev) => onToggleOption(ev)} name="allow-numbers" type="checkbox" value="allow-numbers"/>
-                </label>
-                <button>submit</button>
-            </form>
             <h2>{trans}</h2>
+            {/* <AddOptions/> */}
+            <Exp trans={trans}/>
         </div>
     )
 }

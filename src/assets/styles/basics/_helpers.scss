@@ -17,6 +17,17 @@
     justify-content: space-between;
 }
 
+.btn{
+    background-color: $clrGray;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.btn:hover{
+    border-inline: 2px solid darken($clrGray, $amount: 10%);
+}
+
 .blue {
     color: $clrBlue;
 }

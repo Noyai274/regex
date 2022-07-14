@@ -21,7 +21,7 @@ export const SearchBar=()=>{
             <form onSubmit={onSearch}>
         <label htmlFor="text">
             <input autoFocus onChange={(ev)=> handleFormChange(ev)} className="search-input" type="text" placeholder="write an example text here" />
-            {/* <button className="search-btn">Search</button> */}
+            {/* <button className="search-btn btn">Search</button> */}
         </label>
         </form></div>
     )
