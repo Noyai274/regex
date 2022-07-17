@@ -54,9 +54,8 @@ function _prepareArray(strArr) {
             readyArr.push(str)
         }
     }) 
-    // IS IT NEEDED? 
-    // if (arr.length) {
-    //     readyArr.push(arr)
-    // }
+    if (arr.length) {
+        readyArr.push(arr)
+    }
     return readyArr
 }
