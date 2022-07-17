@@ -17,6 +17,7 @@ export const ResultPage = () => {
     useEffect(() => {
         const translation = regexService.translate(string)
         setTrans(translation)
+        console.log(trans)
     }, [string])
 
 

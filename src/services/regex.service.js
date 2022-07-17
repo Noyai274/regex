@@ -45,15 +45,18 @@ function _prepareArray(strArr) {
     const readyArr = []
     let arr = []
     strArr.forEach(str => {
-        console.log(str)
         if (!SYMBOLS.includes(str)) arr.push(str)
         else {
             if (arr.length) readyArr.push(arr)
             arr = []
-            if (REGEX_CHARS.includes(str))readyArr.push(`+\\` + str + '')
-            else readyArr.push(`+` + str )
+            if (REGEX_CHARS.includes(str))str =(`\\` + str)
+            if(readyArr.length) str =(`+` + str )   
+            readyArr.push(str)
         }
-    })
-    if (arr.length) readyArr.push(arr)
+    }) 
+    // IS IT NEEDED? 
+    // if (arr.length) {
+    //     readyArr.push(arr)
+    // }
     return readyArr
 }
