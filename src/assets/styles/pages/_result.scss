@@ -2,3 +2,11 @@
     cursor: pointer;
     font-size:large;
 }
+.trans-part{
+    transition: 0.25s;
+}
+.trans-part:hover{
+    cursor: pointer;
+    background-color: hsla(195, 53%, 79%, 0.415);
+    border-radius: 5px;
+}

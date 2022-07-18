@@ -17,7 +17,6 @@ export const ResultPage = () => {
     useEffect(() => {
         const translation = regexService.translate(string)
         setTrans(translation)
-        console.log(trans)
     }, [string])
 
 
@@ -30,10 +29,12 @@ export const ResultPage = () => {
         <div className="container">
             <div className="flex align-center space-between">
                 <span className="result-logo" onClick={onGoToHome}><Logo /></span>
-                <SearchBar />
+                <SearchBar string={string} />
             </div>
             <h1>Regex for <span>{string}</span></h1>
-            <h2>{trans}</h2>
+            <h2>{trans.map((part, idx)=>{
+                return <span className="trans-part" key={idx}>{part}</span>
+            })}</h2>
             {/* <AddOptions/> */}
             <Exp trans={trans}/>
         </div>

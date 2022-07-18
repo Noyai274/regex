@@ -11,7 +11,6 @@ function translate(str) {
     const trans = []
     const strArr = Array.from(str)
     const newArr = _prepareArray(strArr)
-    console.log(newArr)
     newArr.map(item => {
         if (typeof item === 'object') {
             trans.push(_checkLettersAndNums(item))
