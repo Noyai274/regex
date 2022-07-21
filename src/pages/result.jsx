@@ -10,7 +10,7 @@ import { Exp } from "../cmps/exp"
 export const ResultPage = () => {
     const navigate = useNavigate()
     let { string } = useParams()
-
+    const [modal, setModal] = useState(false)
     const [trans, setTrans] = useState('')
 
 
@@ -24,6 +24,16 @@ export const ResultPage = () => {
         navigate(`/`)
     }
 
+    const onCloseModal = () => {
+        setModal(false)
+    }
+
+    const onToggleModal = (ev,idx) => {
+        if (!modal || modal.idx !== idx) {
+            setModal({ x: ev.clientX+5 + "px", y: ev.clientY+5 + "px", idx, })
+        }
+        else onCloseModal()
+    }
 
     return (
         <div className="container">
@@ -32,11 +42,13 @@ export const ResultPage = () => {
                 <SearchBar string={string} />
             </div>
             <h1>Regex for <span>{string}</span></h1>
-            <h2>{trans.map((part, idx)=>{
-                return <span className="trans-part" key={idx}>{part}</span>
+            <h2>{trans.length && trans.map((part, idx) => {
+                return <span title="Click to expand" onClick={(ev) => onToggleModal(ev, idx)} className="trans-part" key={idx}>{part}</span>
             })}</h2>
-            {/* <AddOptions/> */}
-            <Exp trans={trans}/>
+            {trans.length && trans.map((part,idx)=>{
+                return <span key={idx}>{modal && <AddOptions key={idx} part={part} onCloseModal={onCloseModal} pos={modal} />}</span>
+            })}
+            <Exp trans={trans} />
         </div>
     )
 }

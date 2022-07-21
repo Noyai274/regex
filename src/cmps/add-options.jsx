@@ -1,28 +1,29 @@
 import { useState } from "react"
 
-export const AddOptions =()=>{
+export const AddOptions =({pos, onCloseModal})=>{
 
-    const [allowNums, setAllowNums] = useState(false)
-    const [incaseSensitive, setIncaseSensitive] = useState(false)
+    const [settings, setSettings] = useState([])
 
     const onToggleOption = (ev) => {
-        switch (ev.target.name) {
-            case 'incase-sensitive':
-                setIncaseSensitive(!incaseSensitive)
-                break;
-            case 'allow-numbers':
-                setAllowNums(!allowNums)
-                break;
-            default: return
+       const opt = (ev.target.value)
+       const isInArr = settings.indexOf(opt)
+        if (isInArr !== -1) {
+            let settingCopy = JSON.parse(JSON.stringify(settings))
+            settingCopy.splice(isInArr, 1)
+            setSettings(settingCopy)
         }
+        else setSettings(prevSet=> [...prevSet, opt])
     }
 
     const onSubmitAdditions= (ev) => {
         ev.preventDefault()
-        console.log(ev)
+        console.log(settings)
+        setSettings([])
+        onCloseModal()
     }
     return(
-        <form className="options-container flex" onSubmit={(ev)=>onSubmitAdditions(ev)}>
+     <section style={{top: pos.y, left: pos.x}} className="add-options">
+     <form className="options-container flex" onSubmit={(ev)=>onSubmitAdditions(ev)}>
         <label htmlFor="incase-sensitive">
             Incase Sensitive
             <input onChange={(ev) => onToggleOption(ev)} name="incase-sensitive" type="checkbox" value="incase-sensitive"/>
@@ -31,17 +32,24 @@ export const AddOptions =()=>{
             Allow numbers
             <input onChange={(ev) => onToggleOption(ev)} name="allow-numbers" type="checkbox" value="allow-numbers"/>
         </label>
+        <label htmlFor="allow-all-keys">
+            Allow all keys
+            <input onChange={(ev) => onToggleOption(ev)} name="allow-all-keys" type="checkbox" value="allow-all-keys"/>
+        </label>
         <label htmlFor="specific-letters">
             Specific letters
             <input onChange={(ev) => onToggleOption(ev)} name="specific-letters" type="checkbox" value="specific-letters"/>
         </label>
         <label htmlFor="min-letters">
-            <input type="range" min="1" max="50" name="min-letters" value="3"/>
+            min-let
+            <input onChange={(ev) => onToggleOption(ev)} type="range" min="1" max="50" name="min-letters" value="3"/>
         </label>
         <label htmlFor="max-letters">
-            <input type="range" min="1" max="50" name="max-letters" value="3"/>
+           max-let
+            <input onChange={(ev) => onToggleOption(ev)} type="range" min="1" max="50" name="max-letters" value="3"/>
         </label>
         <button className="submit-btn btn">submit</button>
     </form>
+     </section>
     )
 }

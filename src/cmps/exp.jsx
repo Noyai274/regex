@@ -12,7 +12,7 @@ export const Exp =(props)=>{
             <h1> What does in mean?</h1>
             <ul>
                 {trans.length && trans.map((exp, idx)=>
-                {return<li key={idx}>{exp} = {onGetExp(exp)}</li>})}
+                {return<li key={idx}>{exp} {onGetExp(exp)}</li>})}
             </ul>
         </div>
     )
