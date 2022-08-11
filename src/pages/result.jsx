@@ -19,9 +19,12 @@ export const ResultPage = () => {
         setTrans(translation)
     }, [string])
     
-    const onToggleModal = (ev,idx) => {
-        if (!modal || modal.idx !== idx) {
-            setModal({ x: ev.clientX+5 + "px", y: ev.clientY+5 + "px", idx, })
+    const onToggleModal = (ev,part) => {
+        if (!modal || modal.part !== part) {
+            setModal({part: part, 
+                idx:{ x: ev.clientX+5 + "px", 
+                y: ev.clientY+5 + "px" 
+            }})
         }
         else setModal(false)
     }
@@ -39,11 +42,9 @@ export const ResultPage = () => {
             </div>
             <h1>Regex for <span>{string}</span></h1>
             <h2>{trans.length && trans.map((part, idx) => {
-                return <span title="Click to expand" onClick={(ev) => onToggleModal(ev, idx)} className="trans-part" key={idx}>{part}</span>
+                return <span title="Click to expand" onClick={(ev) => onToggleModal(ev, part)} className="trans-part" key={idx}>{part}</span>
             })}</h2>
-            {trans.length && trans.map((part,idx)=>{
-                return <span key={idx}>{modal && <AddOptions onAddOptions={onAddOptions} key={idx} part={part} setModal={setModal} pos={modal} />}</span>
-            })}
+            <span>{modal && <AddOptions onAddOptions={onAddOptions} part={modal.part} setModal={setModal} pos={modal.idx} />}</span>
             <Exp trans={trans} />
         </div>
     )

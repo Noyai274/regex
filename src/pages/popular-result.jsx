@@ -11,7 +11,6 @@ export const PopularResultPage=()=>{
     const [trans, setTrans]  = useState([])
 
     useEffect(() => {
-        // getExample()
         const translation = regexService.translatePopular(string)
         setTrans(translation)
     }, [string])
